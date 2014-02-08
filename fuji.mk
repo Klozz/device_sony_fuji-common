@@ -71,11 +71,11 @@ PRODUCT_COPY_FILES += \
     $(NFCEE_ACCESS_PATH):system/etc/nfcee_access.xml
 
 # FM Radio
-PRODUCT_PACKAGES += \
-    FmRadio
+#PRODUCT_PACKAGES += \
+#    FmRadio
 
-PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/com.stericsson.hardware.fm.receiver.xml:system/etc/permissions/com.stericsson.hardware.fm.receiver.xml
+#PRODUCT_COPY_FILES += \
+#    frameworks/native/data/etc/com.stericsson.hardware.fm.receiver.xml:system/etc/permissions/com.stericsson.hardware.fm.receiver.xml
 
 # Sensors
 PRODUCT_PACKAGES += \
