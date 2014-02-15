@@ -6,6 +6,9 @@ $(call inherit-product, device/common/gps/gps_eu_supl.mk)
 # GAPPs if possible! ;)
 $(call inherit-product-if-exists, vendor/olivier/gapps.mk)
 
+# Odexing
+DISABLE_DEXPREOPT := false
+
 DEVICE_PACKAGE_OVERLAYS += device/sony/fuji-common/overlay
 
 # Permissions
