@@ -3,12 +3,6 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 # The gps config appropriate for this device
 $(call inherit-product, device/common/gps/gps_eu_supl.mk)
 
-# GAPPs if possible! ;)
-$(call inherit-product-if-exists, vendor/olivier/gapps.mk)
-
-# Odexing
-DISABLE_DEXPREOPT := false
-
 DEVICE_PACKAGE_OVERLAYS += device/sony/fuji-common/overlay
 
 # Permissions
@@ -77,11 +71,11 @@ PRODUCT_COPY_FILES += \
     $(NFCEE_ACCESS_PATH):system/etc/nfcee_access.xml
 
 # FM Radio
-#PRODUCT_PACKAGES += \
-#    FmRadio
+PRODUCT_PACKAGES += \
+    FmRadio
 
-#PRODUCT_COPY_FILES += \
-#    frameworks/native/data/etc/com.stericsson.hardware.fm.receiver.xml:system/etc/permissions/com.stericsson.hardware.fm.receiver.xml
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/com.stericsson.hardware.fm.receiver.xml:system/etc/permissions/com.stericsson.hardware.fm.receiver.xml
 
 # Sensors
 PRODUCT_PACKAGES += \
@@ -207,7 +201,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     com.qc.hardware=true \
     debug.sf.hw=1 \
     debug.enabletr=true \
-    debug.composition.type=gpu \
+    debug.composition.type=dyn \
     debug.mdpcomp.maxlayer=3 \
     debug.mdpcomp.logs=0 \
     ro.hwui.text_cache_width=2048
