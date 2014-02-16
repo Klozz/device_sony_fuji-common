@@ -5,6 +5,9 @@ $(call inherit-product, device/common/gps/gps_eu_supl.mk)
 
 DEVICE_PACKAGE_OVERLAYS += device/sony/fuji-common/overlay
 
+# GAPPs if possible! ;)
+$(call inherit-product-if-exists, vendor/olivier/gapps.mk)
+
 # Permissions
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
@@ -71,11 +74,12 @@ PRODUCT_COPY_FILES += \
     $(NFCEE_ACCESS_PATH):system/etc/nfcee_access.xml
 
 # FM Radio
-PRODUCT_PACKAGES += \
-    FmRadio
+#PRODUCT_PACKAGES += \
+#    FmRadio
 
-PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/com.stericsson.hardware.fm.receiver.xml:system/etc/permissions/com.stericsson.hardware.fm.receiver.xml
+#PRODUCT_COPY_FILES += \
+#    frameworks/native/data/etc/com.stericsson.hardware.fm.receiver.xml:system/etc/permissions/com.stericsson.hardware.fm.receiver.xml
+
 
 # Sensors
 PRODUCT_PACKAGES += \
