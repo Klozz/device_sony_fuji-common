@@ -6,6 +6,7 @@ $(uncompressed_ramdisk): $(INSTALLED_RAMDISK_TARGET)
 
 MKELF := device/sony/fuji-common/tools/mkelf.py
 INITSH := device/sony/fuji-common/combinedroot/init.sh
+UEVENTD := device/sony/fuji-common/config/ueventd
 BOOTREC_DEVICE := $(PRODUCT_OUT)/recovery/bootrec-device
 
 INSTALLED_BOOTIMAGE_TARGET := $(PRODUCT_OUT)/boot.img
@@ -25,6 +26,12 @@ $(INSTALLED_BOOTIMAGE_TARGET): $(PRODUCT_OUT)/kernel $(uncompressed_ramdisk) $(r
 	$(hide) chmod 755 $(PRODUCT_OUT)/combinedroot/sbin/init.sh
 	$(hide) ln -s sbin/init.sh $(PRODUCT_OUT)/combinedroot/init
 	$(hide) cp $(BOOTREC_DEVICE) $(PRODUCT_OUT)/combinedroot/sbin/
+
+	@echo ----- Making SlimBean ramdisk for LB ------
+	$(hide) cp $(UEVENTD) $(PRODUCT_OUT)/combinedroot/sbin/ueventd
+	$(hide) cd $(PRODUCT_OUT)/combinedroot/
+	$(hide) tar -cvf slim.tar . && cd ..
+	@echo ----- Made SlimBean ramdisk for LB --------
 
 	$(hide) $(MKBOOTFS) $(PRODUCT_OUT)/combinedroot/ > $(PRODUCT_OUT)/combinedroot.cpio
 	$(hide) cat $(PRODUCT_OUT)/combinedroot.cpio | gzip > $(PRODUCT_OUT)/combinedroot.fs
